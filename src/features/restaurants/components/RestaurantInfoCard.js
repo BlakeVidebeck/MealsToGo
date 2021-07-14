@@ -12,6 +12,7 @@ const RestaurantCardCover = styled(Card.Cover)`
 `;
 
 const Title = styled.Text`
+	font-family: ${(props) => props.theme.fonts.body};
 	padding: ${(props) => props.theme.space[2]};
 	color: ${(props) => props.theme.colors.ui.primary};
 `;
