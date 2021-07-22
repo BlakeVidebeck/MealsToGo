@@ -10,7 +10,7 @@ export const locationRequest = async (searchTerm) => {
 
 		return locationMock;
 	} catch (e) {
-		console.error(e.message);
+		console.log(e);
 	}
 };
 

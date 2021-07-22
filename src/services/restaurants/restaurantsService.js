@@ -11,6 +11,7 @@ export const restaurantsTransform = ({ results = [] }) => {
 		return {
 			// spead in the restaurant and add 2 properties based on the data if open or closed
 			...restaurant,
+			address: restaurant.vicinity,
 			isOpenNow: restaurant.opening_hours && restaurant.opening_hours.open_now,
 			isClosedTemporarily: restaurant.business_status === 'CLOSED_TEMPORARILY',
 		};
