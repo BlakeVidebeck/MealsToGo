@@ -27,6 +27,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
 		isOpenNow = true,
 		rating = 4,
 		isClosedTemp = true,
+		placeId,
 	} = restaurant;
 
 	// creates an array based on the number of reviews ( 4 star eg.) and rounds it down(3.2 = 3)
@@ -39,8 +40,13 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
 				<Text variant='label'>{name}</Text>
 				<Section>
 					<Rating>
-						{ratingArray.map((i) => (
-							<SvgXml key={i} xml={star} width={20} height={20} />
+						{ratingArray.map((_, i) => (
+							<SvgXml
+								key={`star-${placeId}-${i}`}
+								xml={star}
+								width={20}
+								height={20}
+							/>
 						))}
 					</Rating>
 					<SectionEnd>

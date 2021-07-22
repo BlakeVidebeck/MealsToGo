@@ -13,9 +13,12 @@ export const LocationContextProvider = ({ children }) => {
 	const onSearch = (searchKeyword) => {
 		setIsLoading(true);
 		setKeyword(searchKeyword);
+	};
+
+	useEffect(() => {
 		// if search is empty then dont do api call
-		if (!searchKeyword.length) return;
-		locationRequest(searchKeyword.toLowerCase())
+		if (!keyword.length) return;
+		locationRequest(keyword.toLowerCase())
 			.then(locationTransform)
 			.then((result) => {
 				setIsLoading(false);
@@ -25,7 +28,7 @@ export const LocationContextProvider = ({ children }) => {
 				setIsLoading(false);
 				setError(e);
 			});
-	};
+	}, [keyword]);
 
 	return (
 		<LocationContext.Provider

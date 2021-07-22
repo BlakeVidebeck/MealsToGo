@@ -1,6 +1,20 @@
 import camelize from 'camelize';
 import { mocks, mockImages } from './mock/index';
 
+export const restaurantsRequest = async (
+	location = '37.7749295,-122.4194155'
+) => {
+	try {
+		const mockData = await mocks[location];
+
+		if (!mockData) throw new Error('no mock found');
+
+		return mockData;
+	} catch (err) {
+		console.log(err);
+	}
+};
+
 export const restaurantsTransform = ({ results = [] }) => {
 	const mappedResults = results.map((restaurant) => {
 		// fill in the restaurant images with mock images
@@ -18,18 +32,4 @@ export const restaurantsTransform = ({ results = [] }) => {
 	});
 
 	return camelize(mappedResults);
-};
-
-export const restaurantsRequest = async (
-	location = '37.7749295,-122.4194155'
-) => {
-	try {
-		const mockData = await mocks[location];
-
-		if (!mockData) throw new Error('no mock found');
-
-		return mockData;
-	} catch (err) {
-		console.log(err);
-	}
 };
