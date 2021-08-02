@@ -11,6 +11,7 @@ export const RestaurantDetailScreen = ({ route }) => {
 	const [dinnerExpanded, setDinnerExpanded] = useState(false);
 	const [drinksExpanded, setDrinksExpanded] = useState(false);
 
+	// the route.params was the restaurant that was clicked on
 	const { restaurant } = route.params;
 
 	return (
