@@ -27,7 +27,7 @@ const LoadingContainer = styled.View`
 
 export const RestaurantsScreen = ({ navigation }) => {
 	// navigate gets passed down as a prop to restaurant screen from the naviagtor
-	const { restaurants, isLoading, error } = useContext(RestaurantsContext);
+	const { restaurants, isLoading } = useContext(RestaurantsContext);
 
 	return (
 		<>
