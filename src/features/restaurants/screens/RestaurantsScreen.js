@@ -41,10 +41,12 @@ export const RestaurantsScreen = ({ navigation }) => {
 						<Loading size={50} animating={true} color={Colors.blue300} />
 					</LoadingContainer>
 				)}
+				{/* search bar */}
 				<Search
 					isFavouritesToggled={isToggled}
 					onFavouritesToggle={() => setIsToggled(!isToggled)}
 				/>
+				{/*  favourites bar */}
 				{isToggled && (
 					<FavouritesBar
 						favourites={favourites}
