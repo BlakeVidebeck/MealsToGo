@@ -10,6 +10,7 @@ export const FavouritesContextProvider = ({ children }) => {
 	};
 
 	const remove = (restaurant) => {
+		// return all favourites that do not equal the restaurant.placeId
 		const newFavourites = favourites.filter(
 			(x) => x.placeId !== restaurant.placeId
 		);
