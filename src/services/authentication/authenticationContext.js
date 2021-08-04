@@ -14,17 +14,19 @@ export const AuthenticationContextProvider = ({ children }) => {
 	const onLogin = async (email, password) => {
 		try {
 			setIsLoading(true);
-			const u = loginRequest(email, password);
+			const u = await loginRequest(email, password);
 			setUser(u);
 			setIsLoading(false);
 		} catch (e) {
 			setIsLoading(false);
-			setError(error);
+			setError(e.message);
 		}
 	};
 
 	return (
-		<AuthenticationContext.Provider value={{ user, isLoading, error, onLogin }}>
+		<AuthenticationContext.Provider
+			value={{ isAuthenticated: !!user, user, isLoading, error, onLogin }}
+		>
 			{children}
 		</AuthenticationContext.Provider>
 	);
