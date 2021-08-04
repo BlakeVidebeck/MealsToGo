@@ -1,4 +1,6 @@
 import React, { useState, createContext } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 import { loginRequest, registerRequest } from './authenticationService';
 
@@ -8,6 +10,16 @@ export const AuthenticationContextProvider = ({ children }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [user, setUser] = useState(null);
 	const [error, setError] = useState(null);
+
+	// check if session is happening on reload
+	firebase.auth().onAuthStateChanged((u) => {
+		if (u) {
+			setUser(u);
+			setIsLoading(false);
+		} else {
+			setIsLoading(false);
+		}
+	});
 
 	const onLogin = async (email, password) => {
 		try {
@@ -37,6 +49,11 @@ export const AuthenticationContextProvider = ({ children }) => {
 		}
 	};
 
+	const onLogout = () => {
+		setUser(null);
+		firebase.auth().signOut();
+	};
+
 	return (
 		<AuthenticationContext.Provider
 			value={{
@@ -46,6 +63,7 @@ export const AuthenticationContextProvider = ({ children }) => {
 				error,
 				onLogin,
 				onRegister,
+				onLogout,
 			}}
 		>
 			{children}
