@@ -11,7 +11,7 @@ export const AuthenticationContextProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [error, setError] = useState(null);
 
-	// check if session is happening on reload
+	// session persistance
 	firebase.auth().onAuthStateChanged((u) => {
 		if (u) {
 			setUser(u);
@@ -27,6 +27,7 @@ export const AuthenticationContextProvider = ({ children }) => {
 			const u = await loginRequest(email, password);
 			setUser(u);
 			setIsLoading(false);
+			setError(null);
 		} catch (e) {
 			setIsLoading(false);
 			setError(e.message);
@@ -42,6 +43,7 @@ export const AuthenticationContextProvider = ({ children }) => {
 				const u = await registerRequest(email, password);
 				setUser(u);
 				setIsLoading(false);
+				setError(null);
 			}
 		} catch (e) {
 			setIsLoading(false);
