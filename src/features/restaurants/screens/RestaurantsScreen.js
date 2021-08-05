@@ -5,6 +5,7 @@ import RestaurantInfoCard from '../components/RestaurantInfoCard';
 import { Spacer } from '../../../components/spacer/SpacerComponent';
 import { SafeArea } from '../../../components/utility/SafeAreaComponent';
 import { Search } from '../components/searchComponent';
+import { FadeInView } from '../../../components/animations/fadeAnimation';
 
 import { RestaurantsContext } from '../../../services/restaurants/restaurantsContext';
 import { FavouritesContext } from '../../../services/favourites/favouritesContext';
@@ -53,7 +54,9 @@ export const RestaurantsScreen = ({ navigation }) => {
 								}
 							>
 								<Spacer position='bottom' size='large'>
-									<RestaurantInfoCard restaurant={item} />
+									<FadeInView>
+										<RestaurantInfoCard restaurant={item} />
+									</FadeInView>
 								</Spacer>
 							</TouchableOpacity>
 						);
