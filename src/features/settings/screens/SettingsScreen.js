@@ -14,6 +14,7 @@ export const SettingsScreen = ({ navigation }) => {
 	const { onLogout, user } = useContext(AuthenticationContext);
 	const [photo, setPhoto] = useState(null);
 
+	// get photo from storage saved in cameraScreen
 	const getProfilePicture = async (currentUser) => {
 		const photoUri = await AsyncStorage.getItem(`${currentUser.uid}-photo`);
 		setPhoto(photoUri);
