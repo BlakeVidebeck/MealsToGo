@@ -3,6 +3,22 @@ const functions = require('firebase-functions');
 
 const { mocks, addMockImage } = require('./mockPlaces');
 
+const addGoogleImage = (restaurant) => {
+	const ref = restaurant.photos[0].photo_reference;
+	if (!ref) {
+		restaurant.photos = [
+			'https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg',
+		];
+		return restaurant;
+	}
+	restaurant.photos = [
+		`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${ref}&key=${
+			functions.config().google.key
+		}`,
+	];
+	return restaurant;
+};
+
 module.exports.placesRequest = (req, res, client) => {
 	const { location, mock } = new Url(req.url, true).query;
 	if (mock === 'true') {
@@ -22,7 +38,7 @@ module.exports.placesRequest = (req, res, client) => {
 			timeout: 1000,
 		})
 		.then((r) => {
-			r.data.results = r.data.results.map(addMockImage);
+			r.data.results = r.data.results.map(addGoogleImage);
 			return res.json(r.data);
 		})
 		.catch((e) => {
