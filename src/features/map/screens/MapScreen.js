@@ -7,12 +7,12 @@ import { MapCalloutComponent } from '../components/MapCalloutComponent';
 
 import { Search } from '../components/searchComponent';
 
-const Map = styled(MapView)`
+const MapContainer = styled(MapView)`
 	height: 100%;
 	width: 100%;
 `;
 
-export const MapScreen = ({ navigation }) => {
+export const Map = ({ navigation }) => {
 	const { location } = useContext(LocationContext);
 	const { restaurants = [] } = useContext(RestaurantsContext);
 
@@ -30,7 +30,7 @@ export const MapScreen = ({ navigation }) => {
 	return (
 		<>
 			<Search />
-			<Map
+			<MapContainer
 				region={{
 					latitude: lat,
 					longitude: lng,
@@ -59,7 +59,22 @@ export const MapScreen = ({ navigation }) => {
 						</MapView.Marker>
 					);
 				})}
-			</Map>
+			</MapContainer>
 		</>
 	);
+};
+
+export const MapScreen = ({ navigation }) => {
+	const { location } = useContext(LocationContext);
+	if (!location) {
+		return (
+			<MapContainer
+				region={{
+					latitude: 0,
+					longitude: 0,
+				}}
+			/>
+		);
+	}
+	return <Map navigation={navigation} />;
 };
