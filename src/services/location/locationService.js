@@ -1,10 +1,9 @@
 import camelize from 'camelize';
+import { host } from '../../utils/env';
 
 export const locationRequest = async (searchTerm) => {
 	// makes a api request to the backend to get location geocode based on searchTerm (toronto)
-	return fetch(
-		`http://localhost:5001/mealstogo-6cc2c/us-central1/geocode?city=${searchTerm}`
-	).then((res) => res.json());
+	return fetch(`${host}/geocode?city=${searchTerm}`).then((res) => res.json());
 };
 
 export const locationTransform = (result) => {
