@@ -1,27 +1,14 @@
 import camelize from 'camelize';
-import { mocks, mockImages } from './mock/index';
 
-export const restaurantsRequest = async (
-	location = '37.7749295,-122.4194155'
-) => {
-	try {
-		const mockData = await mocks[location];
-
-		if (!mockData) throw new Error('no mock found');
-
-		return mockData;
-	} catch (err) {
-		console.log(err);
-	}
+export const restaurantsRequest = (location) => {
+	// returns restaurants from the passed in location lat, lng
+	return fetch(
+		`http://localhost:5001/mealstogo-6cc2c/us-central1/placesNearby?location=${location}`
+	).then((res) => res.json());
 };
 
 export const restaurantsTransform = ({ results = [] }) => {
 	const mappedResults = results.map((restaurant) => {
-		// fill in the restaurant images with mock images
-		restaurant.photos = restaurant.photos.map((p) => {
-			return mockImages[Math.ceil(Math.random() * (mockImages.length - 1))];
-		});
-
 		return {
 			// spead in the restaurant and add 2 properties based on the data if open or closed
 			...restaurant,
