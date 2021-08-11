@@ -43,6 +43,6 @@ module.exports.placesRequest = (req, res, client) => {
 		})
 		.catch((e) => {
 			res.status(400);
-			return res.send(e.response.data.error_message);
+			return res.send(e.response?.data.error_message);
 		});
 };
