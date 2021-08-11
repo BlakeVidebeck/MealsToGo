@@ -3,4 +3,5 @@ const localHost = 'http://localhost:5001/mealstogo-6cc2c/us-central1';
 
 export const isDevelopment = process.env.NODE_ENV === 'development';
 
+// android can only run on liveHost so need to change
 export const host = isDevelopment ? localHost : liveHost;
