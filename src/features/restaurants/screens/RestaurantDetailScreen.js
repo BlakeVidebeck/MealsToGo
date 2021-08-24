@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
+import { Spacer } from '../../../components/spacer/SpacerComponent';
 
 import { SafeArea } from '../../../components/utility/SafeAreaComponent';
 import RestaurantInfoCard from '../components/RestaurantInfoCard';
+import { OrderButton } from '../components/RestaurantScreenStyles';
+import { CartContext } from '../../../services/cart/cartContext';
 
-export const RestaurantDetailScreen = ({ route }) => {
+export const RestaurantDetailScreen = ({ navigation, route }) => {
 	const [breakfastExpanded, setBreakfastExpanded] = useState(false);
 	const [lunchExpanded, setLunchExpanded] = useState(false);
 	const [dinnerExpanded, setDinnerExpanded] = useState(false);
@@ -13,6 +16,7 @@ export const RestaurantDetailScreen = ({ route }) => {
 
 	// the route.params was the restaurant that was clicked on
 	const { restaurant } = route.params;
+	const { addToCart } = useContext(CartContext);
 
 	return (
 		<SafeArea>
@@ -62,6 +66,20 @@ export const RestaurantDetailScreen = ({ route }) => {
 					<List.Item title='Juice' />
 				</List.Accordion>
 			</ScrollView>
+			<Spacer position='bottom' size='large'>
+				<OrderButton
+					icon='cash-usd'
+					mode='contained'
+					onPress={() => {
+						// send to the add to cart funtion in cart context
+						addToCart({ item: 'special', price: 1299 }, restaurant);
+						// navigate to the checkout screen
+						navigation.navigate('Checkout');
+					}}
+				>
+					Order Special only $12.99!
+				</OrderButton>
+			</Spacer>
 		</SafeArea>
 	);
 };
