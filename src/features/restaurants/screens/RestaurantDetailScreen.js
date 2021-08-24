@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { ScrollView } from 'react-native';
-import { List } from 'react-native-paper';
+import { List, Divider } from 'react-native-paper';
 import { Spacer } from '../../../components/spacer/SpacerComponent';
 
 import { SafeArea } from '../../../components/utility/SafeAreaComponent';
@@ -29,10 +29,13 @@ export const RestaurantDetailScreen = ({ navigation, route }) => {
 					onPress={() => setBreakfastExpanded(!breakfastExpanded)}
 				>
 					<List.Item title='Eggs Benedict' />
+					<Divider />
 					<List.Item title='Classic Breakfast' />
+					<Divider />
 					<List.Item title='French Toast' />
+					<Divider />
 				</List.Accordion>
-
+				<Divider />
 				<List.Accordion
 					title='Lunch'
 					left={(props) => <List.Icon {...props} icon='hamburger' />}
@@ -40,10 +43,13 @@ export const RestaurantDetailScreen = ({ navigation, route }) => {
 					onPress={() => setLunchExpanded(!lunchExpanded)}
 				>
 					<List.Item title='Classic Cheeseburger' />
+					<Divider />
 					<List.Item title='Fish and Chips' />
+					<Divider />
 					<List.Item title='Meatlovers Pizza' />
+					<Divider />
 				</List.Accordion>
-
+				<Divider />
 				<List.Accordion
 					title='Dinner'
 					left={(props) => <List.Icon {...props} icon='food-variant' />}
@@ -51,10 +57,13 @@ export const RestaurantDetailScreen = ({ navigation, route }) => {
 					onPress={() => setDinnerExpanded(!dinnerExpanded)}
 				>
 					<List.Item title='Pork Belly' />
+					<Divider />
 					<List.Item title='Sirloin Steak' />
+					<Divider />
 					<List.Item title='Butter Chicken' />
+					<Divider />
 				</List.Accordion>
-
+				<Divider />
 				<List.Accordion
 					title='Drinks'
 					left={(props) => <List.Icon {...props} icon='cup' />}
@@ -62,8 +71,11 @@ export const RestaurantDetailScreen = ({ navigation, route }) => {
 					onPress={() => setDrinksExpanded(!drinksExpanded)}
 				>
 					<List.Item title='Beer' />
+					<Divider />
 					<List.Item title='Wine' />
+					<Divider />
 					<List.Item title='Juice' />
+					<Divider />
 				</List.Accordion>
 			</ScrollView>
 			<Spacer position='bottom' size='large'>

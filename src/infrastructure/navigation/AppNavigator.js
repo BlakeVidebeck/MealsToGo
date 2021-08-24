@@ -12,6 +12,7 @@ import { LocationContextProvider } from '../../services/location/locationContext
 import { RestaurantsContextProvider } from '../../services/restaurants/restaurantsContext';
 import { SettingsNavigator } from './SettingsNavigator';
 import { CheckoutNavigator } from './CheckoutNavigator';
+import { colors } from '../theme/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,8 +40,8 @@ export const AppNavigator = () => {
 						<Tab.Navigator
 							screenOptions={createScreenOptions}
 							tabBarOptions={{
-								activeTintColor: 'tomato',
-								inactiveTintColor: 'gray',
+								activeTintColor: colors.brand.primary,
+								inactiveTintColor: colors.brand.muted,
 							}}
 						>
 							<Tab.Screen name='Restaurants' component={RestaurantsNavigator} />

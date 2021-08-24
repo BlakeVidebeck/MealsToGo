@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 
 import { ScrollView } from 'react-native';
-import { List } from 'react-native-paper';
+import { List, Divider } from 'react-native-paper';
 import { Spacer } from '../../../components/spacer/SpacerComponent';
 import { Text } from '../../../components/typography/TextComponent';
 import { SafeArea } from '../../../components/utility/SafeAreaComponent';
@@ -67,9 +67,12 @@ export const CheckoutScreen = ({ navigation }) => {
 						<Text>Your Order</Text>
 					</Spacer>
 					<List.Section>
-						{cart.map(({ item, price }) => {
+						{cart.map(({ item, price }, i) => {
 							return (
-								<List.Item title={`${item} - $${price / 100}`} key={item} />
+								<List.Item
+									title={`${item} - $${price / 100}`}
+									key={`item-${i}`}
+								/>
 							);
 						})}
 					</List.Section>
@@ -77,6 +80,8 @@ export const CheckoutScreen = ({ navigation }) => {
 				</Spacer>
 				{/* Credit card info */}
 				<NameInput label='Name' value={name} onChangeText={(t) => setName(t)} />
+				<Divider />
+				<Spacer position='top' size='large' />
 				<Spacer position='top' size='large'>
 					{!!name.length && (
 						<CreditCardInput
